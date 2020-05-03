@@ -5,10 +5,10 @@
 }
 
 .logo {
-    display: block;
-    margin: 0 auto;
+	display: block;
+	margin: 0 auto;
     width: 300px;
-    height: 300px
+    height: 300px;
     /*z-index: 10;*/
 }
 
@@ -39,9 +39,8 @@
 
 .navbar a:hover {
 	background-color: #1e2324;
-	clip-path: polygon(22% 0, 83% 0, 94% 7%, 93% 90%, 53% 100%, 8% 93%, 7% 5%);
+	border-radius: 10%;
 	color: grey;
-	font-size: 35px;
 }
 
 .loseText {
