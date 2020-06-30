@@ -11,10 +11,47 @@
     measurementId: "G-63H85D92BT"
   };
   // Initialize Firebase
+
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+  var db = firebase.firestore();
+  
+var counter;
+var docRef = db.collection("entries info").doc("number_of_entries");
 
 window.onload = function() {
-	document.getElementById("people_counter").innerHTML = 2;
+	updateCounter();
+	//console.log(counter);
 }
+
+var updateCounter = function() {
 	
+	var result;
+	docRef.get().then(function(doc) {
+		if(doc && doc.exists) {
+			result = doc.data().nr;
+			document.getElementById("people_counter").innerHTML = result;
+			counter = result;
+			updateDB();
+		}
+	}).catch(function(error) {
+		console.log("Error loading data from firestore:", error);
+	});
+}
+
+var updateDB = function() {
+	var newCounter = parseInt(counter)+1;
+	//console.log(typeof newCounter);
+	return docRef.update({
+		nr: newCounter
+	})
+	.then(function() {
+		console.log("Document successfully updated!");
+	})
+	.catch(function(error) {
+		console.error("Error updating document: ", error);
+	})
+}
+
+
+
